@@ -3,196 +3,290 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>launchpad</title>
-  <meta name="description" content="launchpad" />
+  <title>$WORK</title>
+  <meta name="description" content="work it. launch it." />
+
   <style>
     :root{
-      --bg:#050507;
-      --card:rgba(255,255,255,.06);
-      --border:rgba(255,255,255,.12);
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.68);
+      --bg:#0b0b0b;
+      --card:rgba(255,255,255,.10);
+      --border:rgba(255,255,255,.22);
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.7);
+
+      /* logo-inspired colors */
+      --red:#ff1e1e;
+      --yellow:#ffd400;
+      --blue:#00a2ff;
+      --pink:#ff4fd8;
     }
+
     *{box-sizing:border-box}
+
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color:var(--text);
-      background: var(--bg);
       min-height:100vh;
+      background:#000;
+      overflow-x:hidden;
     }
+
+    /* playful background */
     .bg{
-      position:fixed; inset:0; z-index:-1;
+      position:fixed;
+      inset:0;
+      z-index:-1;
       background:
-        radial-gradient(900px 520px at 18% 18%, rgba(255, 0, 80, .18), transparent 55%),
-        radial-gradient(900px 520px at 82% 22%, rgba(255, 214, 0, .14), transparent 55%),
-        radial-gradient(900px 620px at 50% 92%, rgba(0, 160, 255, .14), transparent 60%),
-        linear-gradient(180deg,#050507,#07070b 60%,#050507);
+        radial-gradient(700px 420px at 18% 20%, rgba(255,30,30,.55), transparent 55%),
+        radial-gradient(600px 360px at 82% 25%, rgba(255,212,0,.55), transparent 55%),
+        radial-gradient(700px 420px at 50% 85%, rgba(0,162,255,.45), transparent 60%),
+        linear-gradient(180deg,#050505,#0b0b0b 60%,#050505);
     }
-    .wrap{max-width:1040px; margin:0 auto; padding:64px 18px 90px;}
-    .top{display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;}
-    .brand{display:flex; align-items:center; gap:12px;}
+
+    .confetti{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      background-image:
+        linear-gradient(90deg, var(--pink) 6px, transparent 6px),
+        linear-gradient(90deg, var(--blue) 8px, transparent 8px),
+        linear-gradient(90deg, var(--yellow) 10px, transparent 10px);
+      background-size: 120px 120px, 160px 160px, 200px 200px;
+      background-position: 20% 30%, 70% 40%, 40% 80%;
+      opacity:.35;
+      mix-blend-mode:screen;
+    }
+
+    .wrap{
+      max-width:1040px;
+      margin:0 auto;
+      padding:72px 18px 90px;
+    }
+
+    .top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
     .logo{
-      width:48px;height:48px;border-radius:14px;
+      width:64px;
+      height:64px;
+      border-radius:18px;
+      object-fit:cover;
+      background:#000;
       border:1px solid var(--border);
-      background:rgba(255,255,255,.04);
-      display:block; object-fit:cover;
-      box-shadow: 0 18px 60px rgba(0,0,0,.55);
-    }
-    .pill{
-      display:inline-flex;align-items:center;gap:10px;
-      padding:10px 14px;border:1px solid var(--border);
-      background:rgba(255,255,255,.03);
-      border-radius:999px;color:var(--muted);font-size:13px;
-    }
-    .dot{width:8px;height:8px;border-radius:50%;background:#31f2a6;box-shadow:0 0 18px rgba(49,242,166,.55)}
-    h1{margin:26px 0 10px; font-size:54px; line-height:1.05; letter-spacing:-.03em;}
-    p{margin:0; color:var(--muted); font-size:18px; max-width:70ch;}
-    .row{display:flex; gap:12px; flex-wrap:wrap; margin-top:22px;}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:12px 16px; border-radius:14px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.04);
-      color:var(--text); text-decoration:none;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.05),
+        0 20px 60px rgba(0,0,0,.6),
+        0 0 50px rgba(255,30,30,.35);
       transition:.15s;
-      user-select:none;
     }
-    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.07)}
-    .btn.primary{background:#fff;color:#000;border-color:transparent}
-    .btn.primary:hover{background:rgba(255,255,255,.92)}
+
+    .logo:hover{transform:scale(1.05)}
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 16px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.06);
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    .dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--yellow);
+      box-shadow:0 0 16px rgba(255,212,0,.8);
+    }
+
+    h1{
+      margin:28px 0 10px;
+      font-size:56px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    p{
+      margin:0;
+      max-width:65ch;
+      font-size:18px;
+      color:var(--muted);
+    }
+
+    .row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:24px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 18px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.08);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:600;
+      transition:.15s;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.14);
+    }
+
+    .btn.primary{
+      background:linear-gradient(135deg,var(--red),var(--yellow));
+      color:#000;
+      border:none;
+    }
+
     .grid{
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:14px;
-      margin-top:30px;
+      grid-template-columns:1.1fr .9fr;
+      gap:16px;
+      margin-top:34px;
     }
-    @media (max-width: 900px){
-      h1{font-size:42px}
+
+    @media (max-width:900px){
+      h1{font-size:44px}
       .grid{grid-template-columns:1fr}
     }
+
     .card{
       border:1px solid var(--border);
       background:var(--card);
-      border-radius:18px;
-      padding:18px;
+      border-radius:20px;
+      padding:20px;
       backdrop-filter: blur(10px);
     }
-    .label{color:rgba(255,255,255,.55); font-size:12px; text-transform:uppercase; letter-spacing:.12em;}
-    .big{margin-top:10px; font-size:18px}
-    .kvs{margin-top:14px; display:grid; gap:10px}
-    .kv{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px; border:1px solid var(--border); border-radius:14px; background:rgba(0,0,0,.20)}
-    .kv b{font-weight:600}
-    .kv span{color:rgba(255,255,255,.62); font-size:13px; word-break:break-all; text-align:right}
-    .copy{
-      display:inline-flex; align-items:center; gap:10px;
-      width:100%; margin-top:12px;
-      padding:12px; border-radius:14px;
+
+    .label{
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.55);
+    }
+
+    .big{
+      font-size:18px;
+      margin-top:10px;
+    }
+
+    .kv{
+      margin-top:14px;
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      padding:12px;
+      border-radius:14px;
       border:1px solid var(--border);
-      background:rgba(0,0,0,.20);
-      color:var(--text);
+      background:rgba(0,0,0,.25);
     }
-    input{
-      flex:1;
-      border:0; outline:0;
-      background:transparent;
-      color:var(--text);
-      font-size:14px;
+
+    .kv span{color:var(--muted)}
+
+    /* BIG X HANDLE BOX */
+    .xbox{
+      margin-top:16px;
+      padding:18px;
+      border-radius:20px;
+      background:linear-gradient(135deg,var(--blue),var(--pink));
+      color:#000;
+      font-weight:800;
+      font-size:22px;
+      text-align:center;
+      text-decoration:none;
+      display:block;
     }
-    .copy button{
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.05);
-      color:var(--text);
-      padding:10px 12px;
-      border-radius:12px;
-      cursor:pointer;
-      transition:.15s;
-      white-space:nowrap;
+
+    .xbox:hover{filter:brightness(1.1)}
+
+    footer{
+      margin-top:26px;
+      font-size:12px;
+      color:rgba(255,255,255,.45);
     }
-    .copy button:hover{background:rgba(255,255,255,.09)}
-    .note{margin-top:10px; color:rgba(255,255,255,.55); font-size:13px}
-    footer{margin-top:26px; color:rgba(255,255,255,.45); font-size:12px}
   </style>
 </head>
 
 <body>
   <div class="bg"></div>
+  <div class="confetti"></div>
 
   <div class="wrap">
     <div class="top">
       <div class="brand">
         <img class="logo" src="./logo.png" alt="logo" />
-        <div class="pill"><span class="dot"></span> live on launchpad</div>
+        <div class="pill"><span class="dot"></span> live</div>
       </div>
-      <a class="btn" href="https://x.com/YOUR_USERNAME" target="_blank" rel="noopener">follow on x</a>
+      <a class="btn" href="https://x.com/launchonwork" target="_blank" rel="noopener">
+        follow on x
+      </a>
     </div>
 
-    <h1>launch. track. send it.</h1>
+    <h1>work it. launch it.</h1>
     <p>
-      clean launch page with real links + a copy box. swap the text + paste your real links and you’re done.
+      a playful launch surface built for speed, attention, and execution.
     </p>
 
     <div class="row">
-      <a class="btn primary" href="https://pump.fun" target="_blank" rel="noopener">buy</a>
-      <a class="btn" href="https://dexscreener.com" target="_blank" rel="noopener">chart</a>
-      <a class="btn" href="https://t.me/YOUR_TELEGRAM" target="_blank" rel="noopener">telegram</a>
+      <a class="btn primary" href="https://x.com/launchonwork" target="_blank">join on x</a>
     </div>
 
     <div class="grid">
       <div class="card">
         <div class="label">about</div>
         <div class="big">
-          put your 2–3 sentence description here. keep it simple. no walls of text.
+          $WORK is about momentum. build it. share it. launch it.
         </div>
 
-        <div class="kvs">
-          <div class="kv"><b>ticker</b><span>$WHEEL (edit me)</span></div>
-          <div class="kv"><b>chain</b><span>solana</span></div>
-          <div class="kv"><b>status</b><span>live</span></div>
+        <div class="kv">
+          <b>ticker</b>
+          <span>$WORK</span>
         </div>
 
-        <footer>© <span id="y"></span> — simple launchpad page</footer>
+        <div class="kv">
+          <b>status</b>
+          <span>live</span>
+        </div>
+
+        <footer>© <span id="y"></span> $WORK</footer>
       </div>
 
       <div class="card">
-        <div class="label">contract</div>
-
-        <div class="copy">
-          <input id="ca" value="PASTE_CONTRACT_ADDRESS_HERE" readonly />
-          <button id="copyBtn">copy</button>
+        <div class="label">x account</div>
+        <a class="xbox" href="https://x.com/launchonwork" target="_blank">
+          @launchonwork
+        </a>
+        <div class="big" style="margin-top:12px">
+          updates, launches, and momentum live on x.
         </div>
-        <div class="note" id="copyNote">click copy to copy the contract.</div>
-
-        <div style="height:14px"></div>
-        <div class="label">quick links</div>
-        <div class="kvs">
-          <a class="btn" style="justify-content:space-between" href="https://pump.fun" target="_blank" rel="noopener">pump.fun <span style="opacity:.6">↗</span></a>
-          <a class="btn" style="justify-content:space-between" href="https://dexscreener.com" target="_blank" rel="noopener">dexscreener <span style="opacity:.6">↗</span></a>
-          <a class="btn" style="justify-content:space-between" href="https://x.com/YOUR_USERNAME" target="_blank" rel="noopener">x <span style="opacity:.6">↗</span></a>
-        </div>
-
-        <div class="note">later we can add: email capture, wallet connect, or gated access.</div>
       </div>
     </div>
   </div>
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
-    const btn = document.getElementById("copyBtn");
-    const ca = document.getElementById("ca");
-    const note = document.getElementById("copyNote");
-
-    btn.addEventListener("click", async () => {
-      try{
-        await navigator.clipboard.writeText(ca.value);
-        note.textContent = "copied.";
-      }catch(e){
-        ca.select();
-        document.execCommand("copy");
-        note.textContent = "copied.";
-      }
-      setTimeout(() => note.textContent = "click copy to copy the contract.", 1200);
-    });
   </script>
 </body>
 </html>
