@@ -1,9 +1,198 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Live</title>
-  </head>
-  <body>
-    <h1>it works</h1>
-  </body>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>launchpad</title>
+  <meta name="description" content="launchpad" />
+  <style>
+    :root{
+      --bg:#050507;
+      --card:rgba(255,255,255,.06);
+      --border:rgba(255,255,255,.12);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.68);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background: var(--bg);
+      min-height:100vh;
+    }
+    .bg{
+      position:fixed; inset:0; z-index:-1;
+      background:
+        radial-gradient(900px 520px at 18% 18%, rgba(255, 0, 80, .18), transparent 55%),
+        radial-gradient(900px 520px at 82% 22%, rgba(255, 214, 0, .14), transparent 55%),
+        radial-gradient(900px 620px at 50% 92%, rgba(0, 160, 255, .14), transparent 60%),
+        linear-gradient(180deg,#050507,#07070b 60%,#050507);
+    }
+    .wrap{max-width:1040px; margin:0 auto; padding:64px 18px 90px;}
+    .top{display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;}
+    .brand{display:flex; align-items:center; gap:12px;}
+    .logo{
+      width:48px;height:48px;border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      display:block; object-fit:cover;
+      box-shadow: 0 18px 60px rgba(0,0,0,.55);
+    }
+    .pill{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:10px 14px;border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:999px;color:var(--muted);font-size:13px;
+    }
+    .dot{width:8px;height:8px;border-radius:50%;background:#31f2a6;box-shadow:0 0 18px rgba(49,242,166,.55)}
+    h1{margin:26px 0 10px; font-size:54px; line-height:1.05; letter-spacing:-.03em;}
+    p{margin:0; color:var(--muted); font-size:18px; max-width:70ch;}
+    .row{display:flex; gap:12px; flex-wrap:wrap; margin-top:22px;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 16px; border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      color:var(--text); text-decoration:none;
+      transition:.15s;
+      user-select:none;
+    }
+    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.07)}
+    .btn.primary{background:#fff;color:#000;border-color:transparent}
+    .btn.primary:hover{background:rgba(255,255,255,.92)}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:14px;
+      margin-top:30px;
+    }
+    @media (max-width: 900px){
+      h1{font-size:42px}
+      .grid{grid-template-columns:1fr}
+    }
+    .card{
+      border:1px solid var(--border);
+      background:var(--card);
+      border-radius:18px;
+      padding:18px;
+      backdrop-filter: blur(10px);
+    }
+    .label{color:rgba(255,255,255,.55); font-size:12px; text-transform:uppercase; letter-spacing:.12em;}
+    .big{margin-top:10px; font-size:18px}
+    .kvs{margin-top:14px; display:grid; gap:10px}
+    .kv{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px; border:1px solid var(--border); border-radius:14px; background:rgba(0,0,0,.20)}
+    .kv b{font-weight:600}
+    .kv span{color:rgba(255,255,255,.62); font-size:13px; word-break:break-all; text-align:right}
+    .copy{
+      display:inline-flex; align-items:center; gap:10px;
+      width:100%; margin-top:12px;
+      padding:12px; border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.20);
+      color:var(--text);
+    }
+    input{
+      flex:1;
+      border:0; outline:0;
+      background:transparent;
+      color:var(--text);
+      font-size:14px;
+    }
+    .copy button{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      transition:.15s;
+      white-space:nowrap;
+    }
+    .copy button:hover{background:rgba(255,255,255,.09)}
+    .note{margin-top:10px; color:rgba(255,255,255,.55); font-size:13px}
+    footer{margin-top:26px; color:rgba(255,255,255,.45); font-size:12px}
+  </style>
+</head>
+
+<body>
+  <div class="bg"></div>
+
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <img class="logo" src="./logo.png" alt="logo" />
+        <div class="pill"><span class="dot"></span> live on launchpad</div>
+      </div>
+      <a class="btn" href="https://x.com/YOUR_USERNAME" target="_blank" rel="noopener">follow on x</a>
+    </div>
+
+    <h1>launch. track. send it.</h1>
+    <p>
+      clean launch page with real links + a copy box. swap the text + paste your real links and you’re done.
+    </p>
+
+    <div class="row">
+      <a class="btn primary" href="https://pump.fun" target="_blank" rel="noopener">buy</a>
+      <a class="btn" href="https://dexscreener.com" target="_blank" rel="noopener">chart</a>
+      <a class="btn" href="https://t.me/YOUR_TELEGRAM" target="_blank" rel="noopener">telegram</a>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="label">about</div>
+        <div class="big">
+          put your 2–3 sentence description here. keep it simple. no walls of text.
+        </div>
+
+        <div class="kvs">
+          <div class="kv"><b>ticker</b><span>$WHEEL (edit me)</span></div>
+          <div class="kv"><b>chain</b><span>solana</span></div>
+          <div class="kv"><b>status</b><span>live</span></div>
+        </div>
+
+        <footer>© <span id="y"></span> — simple launchpad page</footer>
+      </div>
+
+      <div class="card">
+        <div class="label">contract</div>
+
+        <div class="copy">
+          <input id="ca" value="PASTE_CONTRACT_ADDRESS_HERE" readonly />
+          <button id="copyBtn">copy</button>
+        </div>
+        <div class="note" id="copyNote">click copy to copy the contract.</div>
+
+        <div style="height:14px"></div>
+        <div class="label">quick links</div>
+        <div class="kvs">
+          <a class="btn" style="justify-content:space-between" href="https://pump.fun" target="_blank" rel="noopener">pump.fun <span style="opacity:.6">↗</span></a>
+          <a class="btn" style="justify-content:space-between" href="https://dexscreener.com" target="_blank" rel="noopener">dexscreener <span style="opacity:.6">↗</span></a>
+          <a class="btn" style="justify-content:space-between" href="https://x.com/YOUR_USERNAME" target="_blank" rel="noopener">x <span style="opacity:.6">↗</span></a>
+        </div>
+
+        <div class="note">later we can add: email capture, wallet connect, or gated access.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    const btn = document.getElementById("copyBtn");
+    const ca = document.getElementById("ca");
+    const note = document.getElementById("copyNote");
+
+    btn.addEventListener("click", async () => {
+      try{
+        await navigator.clipboard.writeText(ca.value);
+        note.textContent = "copied.";
+      }catch(e){
+        ca.select();
+        document.execCommand("copy");
+        note.textContent = "copied.";
+      }
+      setTimeout(() => note.textContent = "click copy to copy the contract.", 1200);
+    });
+  </script>
+</body>
 </html>
